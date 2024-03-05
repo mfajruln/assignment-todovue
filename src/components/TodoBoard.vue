@@ -2,7 +2,7 @@
   <div class="todo-board">
     <h1>Todo List</h1>
     <TodoForm @addTodo="addTodo" />
-    <TodoItems :todos="todos" @deleteTodo="deleteTodo" @editTodo="editTodo" />
+    <TodoItems :todos="todos" @deleteTodo="deleteTodo" @editTodo="editTodo" @completedTodo="completedTodo" />
   </div>
 </template>
 
@@ -33,6 +33,9 @@
       editTodo(payload) {
         this.$emit('editTodo', payload);
       },
+      completedTodo(index) {
+        this.$emit('completedTodo', index)
+      }
     },
   };
   </script>

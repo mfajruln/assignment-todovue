@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TodoBoard :todos="todos" @addTodo="addTodo" @deleteTodo="deleteTodo" @editTodo="editTodo" />
+    <TodoBoard :todos="todos" @addTodo="addTodo" @deleteTodo="deleteTodo" @editTodo="editTodo" @completedTodo="completedTodo" />
   </div>
 </template>
 
@@ -25,8 +25,18 @@ export default {
       this.todos.splice(index, 1);
     },
     editTodo({ index, todo }) {
+      // console.log(todo);
       this.todos.splice(index, 1, todo);
     },
+    completedTodo(dataIndex){
+      // console.log(dataIndex);
+      if (this.todos[dataIndex].completed == true) {
+        this.todos[dataIndex].completed = false;
+      } else {
+        this.todos[dataIndex].completed = true;
+      }
+      // console.log(this.todos);
+    }
   },
 };
 </script>

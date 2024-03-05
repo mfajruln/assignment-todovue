@@ -8,10 +8,11 @@
       </thead>
       <tbody>
         <tr v-for="(todo, index) in todos" :key="index">
-          <td>{{ todo.text }}</td>
+          <td :class="todo.completed ? 'checked' : '' ">{{ todo.text }}</td>
           <td>
             <button @click="deleteTodo(index)" class="delete">Delete</button>
             <button @click="editMode(index)" class="edit">Edit</button>
+            <button @click="completedTodo(index)" class="edit">OK</button>
             <input v-if="editing === index" type="text" v-model="editedTodo" @keyup.enter="editTodo(index)" @blur="cancelEdit" class="edit-input" />
           </td>
         </tr>
@@ -35,6 +36,10 @@
       };
     },
     methods: {
+      completedTodo(index){
+        console.log(index);
+        this.$emit('completedTodo', index);
+      },
       deleteTodo(index) {
         this.$emit('deleteTodo', index);
       },
@@ -58,6 +63,9 @@
   </script>
   
   <style scoped>
+  .checked {
+    color: #c0392b;
+  }
   .todo-list {
     width: 100%;
     border-collapse: collapse;
